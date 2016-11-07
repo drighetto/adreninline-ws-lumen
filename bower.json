@@ -1,0 +1,22 @@
+{
+    "name": "adreninline-ws-lumen",
+    "description": "Web Service da Equipe Adreninline.",
+    "main": [],
+    "dependencies": {
+        "bootstrap": "^3.3.6",
+        "font-awesome": "fontawesome#^4.5.0"
+    },
+    "devDependencies": {},
+    "authors": [
+        "Danilo Righetto <danilonewtrue@gmail.com>"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "private": true
+}

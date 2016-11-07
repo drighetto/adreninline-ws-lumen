@@ -19,3 +19,72 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Lumen framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+## Adreninline Web Service with Lumen
+
+Esse é o web service do novo aplicativo da equipe Adreninline.
+
+## Pré requisitos do ambiente
+
+* [PHP 5.6](https://secure.php.net)
+* OpenSSL PHP Extension
+* PDO PHP Extension
+* Mbstring PHP Extension (--enable-mbstring)
+* [NodeJS](https://nodejs.org)
+* [Composer](https://getcomposer.org)
+* [Bower](http://bower.io)
+* [npm](http://gulpjs.com/)
+
+### Instalar pacotes e dependências
+```sh
+  $ composer install
+
+  $ npm install
+
+  $ bower install
+
+  $ gulp
+
+```
+
+### Configurar o ambiente
+
+```sh
+  $ cp .env.example .env
+
+  $ php artisan migrate:refresh --seed
+```
+
+### Rodar o web service
+
+```sh
+  $ php artisan serve
+
+  $php -S localhost:8000 -t public
+
+  $php -S localhost:8000 -t public public/index.php
+```
+
+### Abrir no browser
+
+[http://localhost:8000](http://localhost:8000)
+
+### Comandos úteis
+```sh
+  $ npm install -g bower
+
+  $ npm install --global gulp-cli
+
+  $php artisan db:seed
+
+  $php artisan make:migration create_frequencia_table --create=frequencia
+
+  $php artisan make:migration create_perfil_table --create=perfil
+
+  $php artisan make:migration create_usuario_table --create=usuario
+```
+
+### Observação
+
+* Para fins didáticos, utilizamos um banco de dados SQLite.
+* Não alterar o arquivo `\database\database.sqlite` original.

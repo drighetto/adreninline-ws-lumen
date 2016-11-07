@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -11,9 +12,36 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+
+$factory->define(App\Entities\Usuario::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
+        'nome' => $faker->name,
+        'sexo' => $faker->randomElement(['F', 'M']),
+        'telefone' => $faker->randomNumber,
+        'bairro' => $faker->randomElement(['tucuruvi', 'santana', 'carandiru']),
+        'cidade' => $faker->randomElement(['sao paulo', 'osasco', 'guarulhos']),
+        'estado' => $faker->randomElement(['sao paulo', 'campinas', 'limeira']),
+        'cep' => $faker->randomNumber,
         'email' => $faker->email,
+        'senha' => $faker->word,
+        'pergunta1' => $faker->sentence(10),
+        'pergunta2' => $faker->sentence(10),
+        'pergunta3' => $faker->sentence(10),
+        'pergunta4' => $faker->sentence(10),
+    ];
+});
+
+$factory->define(App\Entities\Frequencia::class, function (Faker\Generator $faker) {
+    return [
+        'data' => $faker->dateTime,
+        'pagina' => $faker->randomElement(['equipe', 'aulas', 'mapas-culturais']),
+        'id_usuario' => $faker->randomDigitNotNull,
+    ];
+});
+
+$factory->define(App\Entities\Perfil::class, function (Faker\Generator $faker) {
+    return [
+        'perfil' => $faker->randomElement(['user', 'admin']),
+        'id_usuario' => $faker->randomDigitNotNull,
     ];
 });
