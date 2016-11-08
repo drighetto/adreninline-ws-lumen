@@ -13,12 +13,12 @@ class CreatePerfilTable extends Migration
      */
     public function up()
     {
-        Schema::create('perfil', function (Blueprint $table) {
+        Schema::create('perfilS', function (Blueprint $table) {
             $table->increments('id');
             $table->string('perfil', 50);
             $table->timestamps();
             $table->integer('id_usuario', false, true);
-            $table->foreign('id_usuario')->references('id')->on('usuario')->onDelete('cascade');
+            $table->foreign('id_usuario')->references('id')->on('usuarios')->onDelete('cascade');
         });
     }
 

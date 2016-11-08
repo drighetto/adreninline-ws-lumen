@@ -13,12 +13,12 @@ class CreateFrequenciaTable extends Migration
      */
     public function up()
     {
-        Schema::create('frequencia', function (Blueprint $table) {
+        Schema::create('frequenciaS', function (Blueprint $table) {
             $table->increments('id');
             $table->string('pagina', 50);
             $table->timestamps();
             $table->integer('id_usuario', false, true);
-            $table->foreign('id_usuario')->references('id')->on('usuario');
+            $table->foreign('id_usuario')->references('id')->on('usuarios');
             
         });
     }

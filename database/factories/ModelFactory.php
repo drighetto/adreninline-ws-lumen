@@ -13,7 +13,7 @@
 */
 
 
-$factory->define(App\Entities\Usuario::class, function (Faker\Generator $faker) {
+$factory->define(App\Usuario::class, function (Faker\Generator $faker) {
     return [
         'nome' => $faker->name,
         'sexo' => $faker->randomElement(['F', 'M']),
@@ -31,15 +31,14 @@ $factory->define(App\Entities\Usuario::class, function (Faker\Generator $faker) 
     ];
 });
 
-$factory->define(App\Entities\Frequencia::class, function (Faker\Generator $faker) {
+$factory->define(App\Frequencia::class, function (Faker\Generator $faker) {
     return [
-        'data' => $faker->dateTime,
         'pagina' => $faker->randomElement(['equipe', 'aulas', 'mapas-culturais']),
         'id_usuario' => $faker->randomDigitNotNull,
     ];
 });
 
-$factory->define(App\Entities\Perfil::class, function (Faker\Generator $faker) {
+$factory->define(App\Perfil::class, function (Faker\Generator $faker) {
     return [
         'perfil' => $faker->randomElement(['user', 'admin']),
         'id_usuario' => $faker->randomDigitNotNull,
