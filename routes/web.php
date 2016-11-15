@@ -14,3 +14,19 @@
 $app->get('/', function () use ($app) {
     return $app->version();
 });
+
+//Endpoint
+
+/* Criando uma API */
+
+$app->group([
+    /* Nesse grupo de rotas vamos criar alguns recursos do nosso WEB-SERVICE */
+    /*Recurso: '/usuarios' */
+    'prefix'=>'api/usuarios',
+    //'namespace'=>'App\Http\Controllers'
+], function() use ($app){
+    //Metodo GET do HTTP e vamos passar o Controller que vai executar essa acao
+    $app->get('','UsuariosController@index');
+});
+
+/* Para testar a nossa API vamos usar o POSTMAN */
