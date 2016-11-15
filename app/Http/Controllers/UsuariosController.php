@@ -53,15 +53,15 @@ class UsuariosController extends Controller
         }
 
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
+            'nome' => 'required',
+            'telefone' => 'required',
+            'bairro' => 'required',
         ]);
 
         $usuario->fill($request->all());
         $usuario->save();
         //return son_response()->make($usuario,200);
-        return $usuario;
+        return response()->json(usuario,200);
     }
 
     public function destroy($id)
