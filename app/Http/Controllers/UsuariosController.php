@@ -71,7 +71,7 @@ class UsuariosController extends Controller
         }
         $usuario->delete();
         //return son_response()->make("",204);
-        return 204;
+        return response()->json("",204); //DELETE
     }
 
     //
