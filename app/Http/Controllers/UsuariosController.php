@@ -20,5 +20,11 @@ class UsuariosController extends Controller
         return Usuario::all();
     }
 
+     public function show($id)
+    {
+        //Retorna todos os clientes com JSON
+        return Usuario::find($id);
+    }
+
     //
 }

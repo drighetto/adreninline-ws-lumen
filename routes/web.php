@@ -26,7 +26,9 @@ $app->group([
     //'namespace'=>'App\Http\Controllers'
 ], function() use ($app){
     //Metodo GET do HTTP e vamos passar o Controller que vai executar essa acao
-    $app->get('','UsuariosController@index');
+    $app->get('','UsuariosController@index'); //Coleção de informações
+    // Vamos trabalhar com elementos
+    $app->get('{id}','UsuariosController@show'); // Passando um ID
 });
 
 /* Para testar a nossa API vamos usar o POSTMAN */
