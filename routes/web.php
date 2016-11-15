@@ -27,8 +27,10 @@ $app->group([
 ], function() use ($app){
     //Metodo GET do HTTP e vamos passar o Controller que vai executar essa acao
     $app->get('','UsuariosController@index'); //Coleção de informações
-    // Vamos trabalhar com elementos
-    $app->get('{id}','UsuariosController@show'); // Passando um ID
+    $app->get('{id}','UsuariosController@show'); // Vamos trabalhar com elementos
+    $app->post('', 'UsuariosController@store');
+    $app->put('{id}', 'UsuariosController@update');
+    $app->delete('{id}', 'UsuariosController@destroy');
 });
 
 /* Para testar a nossa API vamos usar o POSTMAN */

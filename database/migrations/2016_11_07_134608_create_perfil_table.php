@@ -13,7 +13,7 @@ class CreatePerfilTable extends Migration
      */
     public function up()
     {
-        Schema::create('perfilS', function (Blueprint $table) {
+        Schema::create('perfils', function (Blueprint $table) {
             $table->increments('id');
             $table->string('perfil', 50);
             $table->timestamps();
