@@ -45,8 +45,8 @@ class UsuariosController extends Controller
 
         Usuario::create($request->all());
         //$usuario = Usuario::create($request->all());
-        //return son_response()->make($usuario,201);
-        return response()->json("[]",201);
+        return son_response()->make($usuario,201);
+        //return response()->json("[]",201);
     }
 
     public function update(Request $request,$id)
@@ -63,8 +63,8 @@ class UsuariosController extends Controller
 
         $usuario->fill($request->all());
         $usuario->save();
-        //return son_response()->make($usuario,200);
-        return response()->json(usuario,200);
+        return son_response()->make($usuario,200);
+        //return response()->json(usuario,200);
     }
 
     public function destroy($id)
@@ -73,8 +73,8 @@ class UsuariosController extends Controller
             throw new ModelNotFoundException("Usuario requisitado não existe");
         }
         $usuario->delete();
-        //return son_response()->make("",204);
-        return response()->json("",204); //DELETE
+        return son_response()->make("",204);
+        //return response()->json("",204); //DELETE
     }
 
     //

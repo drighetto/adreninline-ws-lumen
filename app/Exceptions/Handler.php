@@ -47,17 +47,22 @@ class Handler extends ExceptionHandler
     {
         $arrayException = [
             HttpExcelption::class,
-            ModelNotFoundException::class
+            ModelNotFoundException::class,
+            ValidationException::class
         ];
 
         if(in_array(get_class($e), $arrayException)){
             $response = parent::render($request, $e);
-            return response()->json([
-                'status_code'=> $response->getStatusCode(),
+            //return response()->json([
+            /* Retornando erros em XML */
+            $arrayError = ['status_code'=> $response->getStatusCode(),
                 'erro_code'=> 5557,
                 'message'=> $e->getMessage(),
-                'about_error'=> 'algum link'
-            ], $response->getStatusCode());
+                'about_error'=> 'algum link'];
+            if($e instanceof ValidationException){
+                $arrayError['fields'] = $e->validator->getMessageBag()->toArray();
+            }
+            return son_response()->make($arrayError, $response->getStatusCode());
         }
 
         return parent::render($request, $e);
