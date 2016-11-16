@@ -34,3 +34,17 @@ $app->group([
 });
 
 /* Para testar a nossa API vamos usar o POSTMAN */
+
+$app->group([
+    /* Nesse grupo de rotas vamos criar alguns recursos do nosso WEB-SERVICE */
+    /*Recurso: '/usuarios' */
+    'prefix'=>'api/usuarios/{usuario}/frequencias',
+    //'namespace'=>'App\Http\Controllers'
+], function() use ($app){
+    //Metodo GET do HTTP e vamos passar o Controller que vai executar essa acao
+    $app->get('','FrequenciasController@index'); //Coleção de informações
+    $app->get('{id}','FrequenciasController@show'); // Vamos trabalhar com elementos
+    $app->post('', 'FrequenciasController@store');
+    $app->put('{id}', 'FrequenciasController@update');
+    $app->delete('{id}', 'FrequenciasController@destroy');
+});
