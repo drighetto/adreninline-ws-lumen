@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http;
+
 //use Laravel\Lumen\Http\ResponseFactory;
 //use App\Http\ResponseFactory;
 

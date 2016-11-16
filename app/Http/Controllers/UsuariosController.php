@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Usuario;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use App\Http\ResponseFactory;
+//use App\Http\Helpers;
 
 class UsuariosController extends Controller
 {
@@ -19,7 +21,8 @@ class UsuariosController extends Controller
         //Retorna todos os clientes com JSON
         //return Usuario::all();
         //return son_response()->make(Usuario::all());
-        return Usuario::all();
+        //return Usuario::all();
+        return son_response()->make(Usuario::all());
     }
 
      public function show($id)
