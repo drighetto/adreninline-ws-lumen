@@ -43,42 +43,62 @@ class FrequenciasController extends Controller
         return son_response()->make($result);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $usuarioId)
     {
+        if(!($usuario = Usuario::find($usuarioId))){
+            throw new ModelNotFoundException("Usuario requisitado não existe");
+        }
+
         $this->validate($request, [
-            'nome' => 'required',
-            'telefone' => 'required',
-            'bairro' => 'required',
+            'pagina' => 'required'
         ]);
 
-        Usuario::create($request->all());
-        return son_response()->make($usuario,201);
+        $frequencias = Frequencia::create($request->all());
+        //$frequencias = $usuario->frequencia()->create($request->all());
+        return son_response()->make($frequencias,201);
         
     }
 
-    public function update(Request $request,$id)
+    public function update(Request $request,$id, $usuarioId)
     {
-        if(!($usuario = Usuario::find($id))){
+        if(!($usuario = Usuario::find($usuarioId))){
             throw new ModelNotFoundException("Usuario requisitado não existe");
+        }
+
+        if(!($frequencia = Frequencia::find($id))){
+            throw new ModelNotFoundException("Frequencia requisitada não existe");
         }
 
         $this->validate($request, [
-            'nome' => 'required',
-            'telefone' => 'required',
-            'bairro' => 'required',
+            'pagina' => 'required'
         ]);
 
-        $usuario->fill($request->all());
-        $usuario->save();
-        return son_response()->make($usuario,200);
+        $frequencia = Frequencia::where('id_usuario', $usuarioId)->where('id',$id)->get()->first();
+        
+        if(!$frequencia){
+            throw new ModelNotFoundException("Frequencia requisitada não existe");
+        }
+        $frequencia->fill($request->all());
+        $frequencia->save();
+        return son_response()->make($frequencia,200);
     }
 
-    public function destroy($id)
+    public function destroy($id, $usuarioId)
     {
-        if(!($usuario = Usuario::find($id))){
+        if(!($usuario = Usuario::find($usuarioId))){
             throw new ModelNotFoundException("Usuario requisitado não existe");
         }
-        $usuario->delete();
+
+        if(!($frequencia = Frequencia::find($id))){
+            throw new ModelNotFoundException("Frequencia requisitada não existe");
+        }
+
+        $frequencia = Frequencia::where('id_usuario', $usuarioId)->where('id',$id)->get()->first();
+        
+        if(!$frequencia){
+            throw new ModelNotFoundException("Frequencia requisitada não existe");
+        }
+        $frequencia->delete();
         return son_response()->make("",204);
     }
 
