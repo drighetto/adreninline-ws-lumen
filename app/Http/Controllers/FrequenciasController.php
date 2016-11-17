@@ -22,20 +22,25 @@ class FrequenciasController extends Controller
 
     public function index($usuarioId)
     {
-         if(!($usuario = Usuario::find($usuarioId))){
+         if(!($usuario = Frequencia::find($usuarioId))){
             throw new ModelNotFoundException("Usuario requisitado não existe");
         }
         
         return son_response()->make(Frequencia::where('id_usuario', $usuarioId)->get());
     }
 
-     public function show($id)
+     public function show($id, $usuarioId)
     {
         
-        if(!($usuario = Usuario::find($id))){
+        if(!(Usuario::find($usuarioId))){
             throw new ModelNotFoundException("Usuario requisitado não existe");
         }
-        return $usuario;
+
+        if(!(Frequencia::find($id))){
+            throw new ModelNotFoundException("Frequencia requisitada não existe");
+        }
+        $result = Frequencia::where('id_usuario', $usuarioId)->where('id',$id)->get()->first();
+        return son_response()->make($result);
     }
 
     public function store(Request $request)

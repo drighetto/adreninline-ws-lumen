@@ -48,3 +48,4 @@ $app->group([
     $app->put('{id}', 'FrequenciasController@update');
     $app->delete('{id}', 'FrequenciasController@destroy');
 });
+
