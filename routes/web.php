@@ -78,7 +78,8 @@ $app->get('tcu', function(){
 });
 
 /* Configurando nosso servidor WSDL */
-$uri = 'http://son-soap.dev:8080'; //Servidor remoto SOAP do Apache
+//$uri = 'http://son-soap.dev:8080'; //Servidor remoto SOAP do Apache
+$uri = 'http://localhost:8080'; //Servidor remoto SOAP do Apache
 $app->get('son-soap.wsdl', function() use($uri){
     $autoDiscover = new \Zend\Soap\AutoDiscover();
     /* Definir o endereço do SOAP */
@@ -95,7 +96,7 @@ $app->get('son-soap.wsdl', function() use($uri){
 $app->post('server', function() use($uri){
     $server = new \Zend\Soap\Server("$uri/son-soap.wsdl",[
         /* Desabilitando o Cache */
-        'cache_wsdl'=> WDSL_CACHE_NONE
+        'cache_wsdl'=> WSDL_CACHE_NONE
     ]);
     $server->setUri("$uri/server");
     return $server->setReturnResponse(true)->addFunction('soma')->handle();
@@ -106,10 +107,36 @@ $app->post('server', function() use($uri){
 $app->get('soap-teste', function() use($uri){
     //Criando um Cliente-SOAP para consumir o Web SERVICE
     $client = new \Zend\Soap\Client("$uri/son-soap.wsdl",[
-        'cache_wsdl'=> WDSL_CACHE_NONE
+        'cache_wsdl'=> WSDL_CACHE_NONE
     ]);
     // Chamando a função do Server SOAP
     print_r($client->soma(2,5));
+});
+
+/* Criando Web Service SOAP para Usuários */
+$uriUsuario = "$uri/usuario";
+$app->get('usuario/son-soap.wsdl', function() use($uriUsuario){
+    $autoDiscover = new \Zend\Soap\AutoDiscover();
+    $autoDiscover->setUri("$uriUsuario/server");
+    $autoDiscover->setServiceName('SONSOAP');
+    //$autoDiscover->addFunction('soma');
+    $autoDiscover->setClass(\App\Soap\UsuariosSoapController::class);
+    $autoDiscover->handle();
+});
+
+$app->post('usuario/server', function() use($uriUsuario){
+    $server = new \Zend\Soap\Server("$uriUsuario/son-soap.wsdl",[
+        'cache_wsdl'=> WSDL_CACHE_NONE
+    ]);
+    $server->setUri("$uriUsuario/server");
+    return $server->setReturnResponse(true)->addFunction('soma')->handle();
+});
+
+$app->get('soap-usuario', function() use($uriUsuario){
+    $client = new \Zend\Soap\Client("$uriUsuario/son-soap.wsdl",[
+        'cache_wsdl'=> WSDL_CACHE_NONE
+    ]);
+    print_r($client->listAll());
 });
 
 /**
