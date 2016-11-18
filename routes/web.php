@@ -133,10 +133,15 @@ $app->post('usuario/server', function() use($uriUsuario){
 });
 
 $app->get('soap-usuario', function() use($uriUsuario){
-    $client = new \Zend\Soap\Client("$uriUsuario/son-soap.wsdl",[
+    $usuario = new \Zend\Soap\Client("$uriUsuario/son-soap.wsdl",[
         'cache_wsdl'=> WSDL_CACHE_NONE
     ]);
-    print_r($client->listAll());
+    //print_r($usuario->listAll());
+    print_r($usuario->create([
+        'nome'=> 'Danilo',
+        'bairro'=> 'Santana',
+        'cidade'=> 'Sao Paulo',
+    ]));
 });
 
 /**

@@ -10,6 +10,7 @@ use App\Http\ResponseFactory;
 use Illuminate\Contracts\Support\Arrayable;
 use Zend\Config\Config;
 use Zend\Config\Writer\Xml;
+use App\Types\UsuarioType;
 
 class UsuariosSoapController
 {
@@ -40,21 +41,21 @@ class UsuariosSoapController
         return $usuario;
     }
 */
-/*
-    public function store(Request $request)
+    /**
+    * @param \App\Types\UsuarioType $type
+    * @return string
+    */
+    public function create(UsuarioType $type)
     {
-        $this->validate($request, [
-            'nome' => 'required',
-            'telefone' => 'required',
-            'bairro' => 'required',
-        ]);
-
-        Usuario::create($request->all());
-        //$usuario = Usuario::create($request->all());
-        return son_response()->make($usuario,201);
-        //return response()->json("[]",201);
+        $data = [
+            'nome'=> $type->nome,
+            'bairro'=> $type->bairro,
+            'cidade'=> $type->cidade,
+        ];
+        $usuario = Usuario::create($data);
+        return $this->getXML($usuario);
     }
-*/
+
 /*
     public function update(Request $request,$id)
     {
