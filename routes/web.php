@@ -77,3 +77,25 @@ $app->get('tcu', function(){
     ]));
 });
 
+/* Configurando nosso servidor WSDL */
+$uri = 'http://son-soap.dev/server'; //Servidor SOAP do Apache
+$app->get('son-soap.wsdl', function() use($uri){
+    $autoDiscover = new \Zend\Soap\AutoDiscover();
+    /* Definir o endereço do SOAP */
+    $autoDiscover->setUri($uri);
+    $autoDiscover->setServiceName('SONSOAP');
+    /* A função 'addFunction()' faz com que todas as funções
+    passadas para essa função apareção no WSDL */
+    $autoDiscover->addFunction('soma');
+    /* Gerando o WSDL */
+    $autoDiscover->handle();
+});
+
+/**
+ * @param int $num1
+ * @param int $num2
+ * @return int
+ */
+function soma($num1, $num2){
+ return $num1 + $num2;
+};
