@@ -63,5 +63,17 @@ $app->get('tcu', function(){
     print_r($client->getFunctions());
     echo "Tipos:";
     print_r($client->getTypes());
+    echo "Resultados:";
+    print_r($client->obterSaldoAtualizado([
+        'parcelas'=>[
+            'parcela'=>[
+                'data'=>'1995-01-01',
+                'tipo'=>'D',
+                'valor'=> 3500
+            ]
+        ],
+        'aplicaJuros'=>true,
+        'dataAtualizacao'=>'2016-08-08'
+    ]));
 });
 
