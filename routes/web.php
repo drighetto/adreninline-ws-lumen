@@ -11,6 +11,9 @@
 |
 */
 
+use Zend\Soap\Client;
+use Zend\Soap\Server;
+
 $app->get('/', function () use ($app) {
     return $app->version();
 });
@@ -47,5 +50,18 @@ $app->group([
     $app->post('', 'FrequenciasController@store');
     $app->put('{id}', 'FrequenciasController@update');
     $app->delete('{id}', 'FrequenciasController@destroy');
+});
+
+/* Trabalhando com SOAP - http://portal.tcu.gov.br/webservices-tcu/ */
+
+$app->get('tcu', function(){
+    //Criando um Cliente-SOAP para consumir o Web SERVICE
+    $client = new \Zend\Soap\Client('http://contas.tcu.gov.br/debito/CalculoDebito?wsdl');
+    echo "Informações do Servidor:";
+    print_r($client->getOptions());
+    echo "Funções:";
+    print_r($client->getFunctions());
+    echo "Tipos:";
+    print_r($client->getTypes());
 });
 
