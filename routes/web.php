@@ -78,17 +78,38 @@ $app->get('tcu', function(){
 });
 
 /* Configurando nosso servidor WSDL */
-$uri = 'http://son-soap.dev/server'; //Servidor SOAP do Apache
+$uri = 'http://son-soap.dev:8080'; //Servidor remoto SOAP do Apache
 $app->get('son-soap.wsdl', function() use($uri){
     $autoDiscover = new \Zend\Soap\AutoDiscover();
     /* Definir o endereço do SOAP */
-    $autoDiscover->setUri($uri);
+    $autoDiscover->setUri("$uri/server");
     $autoDiscover->setServiceName('SONSOAP');
     /* A função 'addFunction()' faz com que todas as funções
     passadas para essa função apareção no WSDL */
     $autoDiscover->addFunction('soma');
     /* Gerando o WSDL */
     $autoDiscover->handle();
+});
+
+/* Criando um servidor SOAP */
+$app->post('server', function() use($uri){
+    $server = new \Zend\Soap\Server("$uri/son-soap.wsdl",[
+        /* Desabilitando o Cache */
+        'cache_wsdl'=> WDSL_CACHE_NONE
+    ]);
+    $server->setUri("$uri/server");
+    return $server->setReturnResponse(true)->addFunction('soma')->handle();
+});
+
+/* Criando o SOAPClient para testar o nosso SOAPServer */
+
+$app->get('soap-teste', function() use($uri){
+    //Criando um Cliente-SOAP para consumir o Web SERVICE
+    $client = new \Zend\Soap\Client("$uri/son-soap.wsdl",[
+        'cache_wsdl'=> WDSL_CACHE_NONE
+    ]);
+    // Chamando a função do Server SOAP
+    print_r($client->soma(2,5));
 });
 
 /**
