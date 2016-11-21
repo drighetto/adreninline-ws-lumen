@@ -83,8 +83,3 @@ Esse é o web service do novo aplicativo da equipe Adreninline.
 
   $php artisan make:migration create_usuario_table --create=usuario
 ```
-
-### Observação
-
-* Para fins didáticos, utilizamos um banco de dados SQLite.
-* Não alterar o arquivo `\database\database.sqlite` original.
