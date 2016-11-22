@@ -17,11 +17,11 @@ class CreateUsuarioTable extends Migration
             $table->increments('id');
             $table->string('nome')->unique();
             $table->enum('sexo',['F','M']);
-            $table->integer('telefone');
+            $table->string('telefone');
             $table->string('bairro');
             $table->string('cidade');
             $table->string('estado');
-            $table->integer('cep');
+            $table->string('cep');
             $table->string('email');
             $table->string('senha');
             $table->string('pergunta1');

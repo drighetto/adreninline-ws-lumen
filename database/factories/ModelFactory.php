@@ -17,11 +17,11 @@ $factory->define(App\Usuario::class, function (Faker\Generator $faker) {
     return [
         'nome' => $faker->name,
         'sexo' => $faker->randomElement(['F', 'M']),
-        'telefone' => $faker->randomNumber,
+        'telefone' => $faker->word,
         'bairro' => $faker->randomElement(['tucuruvi', 'santana', 'carandiru']),
         'cidade' => $faker->randomElement(['sao paulo', 'osasco', 'guarulhos']),
         'estado' => $faker->randomElement(['sao paulo', 'campinas', 'limeira']),
-        'cep' => $faker->randomNumber,
+        'cep' => $faker->word,
         'email' => $faker->email,
         'senha' => $faker->word,
         'pergunta1' => $faker->sentence(10),

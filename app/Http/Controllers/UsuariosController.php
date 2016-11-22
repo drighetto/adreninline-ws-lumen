@@ -56,11 +56,21 @@ class UsuariosController extends Controller
     {
         $this->validate($request, [
             'nome' => 'required',
+            'sexo' => 'required',
             'telefone' => 'required',
             'bairro' => 'required',
+            'cidade' => 'required',
+            'estado' => 'required',
+            'cep' => 'required',
+            'email' => 'required',
+            'senha' => 'required',
+            'pergunta1' => 'required',
+            'pergunta2' => 'required',
+            'pergunta3' => 'required',
+            'pergunta4'=> 'required'
         ]);
 
-        Usuario::create($request->all());
+        $usuario = Usuario::create($request->all());
         //$usuario = Usuario::create($request->all());
         return son_response()->make($usuario,201);
         //return response()->json("[]",201);
