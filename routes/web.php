@@ -31,9 +31,16 @@ $app->group([
     //Metodo GET do HTTP e vamos passar o Controller que vai executar essa acao
     $app->get('','UsuariosController@index'); //Coleção de informações
     $app->get('{id}','UsuariosController@show'); // Vamos trabalhar com elementos
+    //$app->get('{email}/{senha}','UsuariosController@login'); // Vamos trabalhar com elementos
     $app->post('', 'UsuariosController@store');
     $app->put('{id}', 'UsuariosController@update');
     $app->delete('{id}', 'UsuariosController@destroy');
+});
+
+$app->group([
+    'prefix'=>'api/usuarios/login/{email}/{senha}',
+], function() use ($app){
+    $app->get('','UsuariosController@login');
 });
 
 /* Para testar a nossa API vamos usar o POSTMAN */

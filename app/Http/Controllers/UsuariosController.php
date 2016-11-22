@@ -35,6 +35,23 @@ class UsuariosController extends Controller
         return $usuario;
     }
 
+    /* Login */
+    public function login($email, $senha)
+    {
+        //Retorna todos os clientes com JSON
+        //return Usuario::find($id);
+        if(!($usuario = Usuario::where('email', $email)->get())){
+            throw new ModelNotFoundException("Usuario requisitado não existe");
+        }
+        //$result = Usuario::where('email', $email)->get()->first();
+        $result = Usuario::where('email', $email)->where('senha',$senha)->get()->first();
+        if(!$result){
+            throw new ModelNotFoundException("Usuario requisitado não existe");
+        }
+        return son_response()->make($result);
+        //return $usuario;
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [
