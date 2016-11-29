@@ -37,6 +37,17 @@ $app->group([
     $app->delete('{id}', 'UsuariosController@destroy');
 });
 
+/* Eventos */
+$app->group([
+    'prefix'=>'api/eventos',
+], function() use ($app){
+    $app->get('','EventosController@index'); 
+    $app->get('{id}','EventosController@show');
+    $app->post('', 'EventosController@store');
+    $app->put('{id}', 'EventosController@update');
+    $app->delete('{id}', 'EventosController@destroy');
+});
+
 $app->group([
     'prefix'=>'api/usuarios/login/{email}/{senha}',
 ], function() use ($app){

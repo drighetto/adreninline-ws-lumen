@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-//use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call('UsuarioTableSeeder');
         $this->call('FrequenciaTableSeeder');
         $this->call('PerfilTableSeeder');
+        $this->call('EventoTableSeeder');
 
         //Model::reguard();
 

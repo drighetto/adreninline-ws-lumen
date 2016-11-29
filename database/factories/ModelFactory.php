@@ -44,3 +44,17 @@ $factory->define(App\Perfil::class, function (Faker\Generator $faker) {
         'id_usuario' => $faker->randomDigitNotNull,
     ];
 });
+
+$factory->define(App\Evento::class, function (Faker\Generator $faker) {
+    return [
+        'resumo' => $faker->randomElement(['Evento - Street', 'Evento - Jump', 'Evento - Slalom', 'Evento - Slide']),
+        'descricao' => $faker->sentence(10),
+        'link' => $faker->randomElement([
+            'http://www.adreninline.com/single-post/2016/11/26/Como-escolher-um-capacete-para-patina%C3%A7%C3%A3o', 
+            'http://www.adreninline.com/single-post/2016/09/28/Como-comprar-um-patins-de-segunda-m%C3%A3o', 
+            'http://www.adreninline.com/single-post/2016/09/08/Como-diminuir-o-tempo-em-uma-volta-no-parque', 
+            'http://www.adreninline.com/single-post/2016/09/01/Boa-forma-f%C3%ADsica-e-patins'
+            ]),
+        'data' => $faker->randomElement(['2017-01-10', '2017-02-10', '2017-03-20', '2017-05-10']),
+    ];
+});
