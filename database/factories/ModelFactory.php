@@ -17,23 +17,23 @@ $factory->define(App\Usuario::class, function (Faker\Generator $faker) {
     return [
         'nome' => $faker->name,
         'sexo' => $faker->randomElement(['F', 'M']),
-        'telefone' => $faker->word,
+        'telefone' => $faker->randomElement(['11 3105-1553', '11 3104-5300', '11 3329-9852']),
         'bairro' => $faker->randomElement(['tucuruvi', 'santana', 'carandiru']),
         'cidade' => $faker->randomElement(['sao paulo', 'osasco', 'guarulhos']),
         'estado' => $faker->randomElement(['sao paulo', 'campinas', 'limeira']),
-        'cep' => $faker->word,
+        'cep' => $faker->randomElement(['01014-001', '02034-101', '01014-222']),
         'email' => $faker->email,
-        'senha' => $faker->word,
-        'pergunta1' => $faker->sentence(10),
-        'pergunta2' => $faker->sentence(10),
-        'pergunta3' => $faker->sentence(10),
-        'pergunta4' => $faker->sentence(10),
+        'senha' => $faker->randomElement(['1234', 'teste', 'equipe']),
+        'pergunta1' => $faker->randomElement(['S', 'N']),
+        'pergunta2' => $faker->randomElement(['S', 'N']),
+        'pergunta3' => $faker->randomElement(['street', 'slalom', 'speed', 'jump', 'slide']),
+        'pergunta4' => $faker->randomElement(['amigos', 'familia', 'social', 'site', 'outros']),
     ];
 });
 
 $factory->define(App\Frequencia::class, function (Faker\Generator $faker) {
     return [
-        'pagina' => $faker->randomElement(['equipe', 'aulas', 'mapas-culturais']),
+        'pagina' => $faker->randomElement(['home','equipe', 'aulas', 'mapas-culturais' , 'galeria', 'videos', 'contato']),
         'id_usuario' => $faker->randomDigitNotNull,
     ];
 });

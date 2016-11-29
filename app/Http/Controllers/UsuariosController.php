@@ -21,7 +21,7 @@ class UsuariosController extends Controller
         //Retorna todos os clientes com JSON
         //return Usuario::all();
         //return son_response()->make(Usuario::all());
-        //return Usuario::all();
+        //$usuario =  Usuario::all()->get();
         return son_response()->make(Usuario::all());
     }
 
@@ -81,12 +81,13 @@ class UsuariosController extends Controller
         if(!($usuario = Usuario::find($id))){
             throw new ModelNotFoundException("Usuario requisitado não existe");
         }
-
+        /*
         $this->validate($request, [
             'nome' => 'required',
             'telefone' => 'required',
             'bairro' => 'required',
         ]);
+        */
 
         $usuario->fill($request->all());
         $usuario->save();

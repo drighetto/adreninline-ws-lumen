@@ -11,7 +11,7 @@ class PerfilTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Perfil::class, 30)->create();
+        factory(\App\Perfil::class, 2)->create();
         //factory(\App\Entities\Perfil::class, 30)->create();
     }
 }

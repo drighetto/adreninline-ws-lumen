@@ -11,7 +11,7 @@ class FrequenciaTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Frequencia::class, 30)->create();
+        factory(\App\Frequencia::class, 100)->create();
         //factory(\App\Entities\Frequencia::class, 30)->create();
     }
 }
