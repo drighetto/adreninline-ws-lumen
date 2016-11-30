@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call('FrequenciaTableSeeder');
         $this->call('PerfilTableSeeder');
         $this->call('EventoTableSeeder');
+        $this->call('MensagemTableSeeder');
 
         //Model::reguard();
 

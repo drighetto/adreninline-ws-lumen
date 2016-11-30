@@ -48,6 +48,17 @@ $app->group([
     $app->delete('{id}', 'EventosController@destroy');
 });
 
+/* Mensagens */
+$app->group([
+    'prefix'=>'api/mensagens',
+], function() use ($app){
+    $app->get('','MensagensController@index'); 
+    $app->get('{id}','MensagensController@show');
+    $app->post('', 'MensagensController@store');
+    $app->put('{id}', 'MensagensController@update');
+    $app->delete('{id}', 'MensagensController@destroy');
+});
+
 $app->group([
     'prefix'=>'api/usuarios/login/{email}/{senha}',
 ], function() use ($app){

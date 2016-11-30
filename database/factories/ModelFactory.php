@@ -58,3 +58,10 @@ $factory->define(App\Evento::class, function (Faker\Generator $faker) {
         'data' => $faker->randomElement(['2017-01-10', '2017-02-10', '2017-03-20', '2017-05-10']),
     ];
 });
+
+$factory->define(App\Mensagem::class, function (Faker\Generator $faker) {
+    return [
+        'resumo' => $faker->randomElement(['Mensagem - Street', 'Mensagem - Jump', 'Mensagem - Slalom', 'Mensagem - Slide']),
+        'descricao' => $faker->sentence(10),
+    ];
+});
