@@ -54,6 +54,7 @@ class UsuariosController extends Controller
 
     public function store(Request $request)
     {
+        /*
         $this->validate($request, [
             'nome' => 'required',
             'sexo' => 'required',
@@ -69,11 +70,12 @@ class UsuariosController extends Controller
             'pergunta3' => 'required',
             'pergunta4'=> 'required'
         ]);
+        */
 
         $usuario = Usuario::create($request->all());
         //$usuario = Usuario::create($request->all());
-        return son_response()->make($usuario,201);
-        //return response()->json("[]",201);
+        //return son_response()->make($usuario,201);
+        return response()->json($usuario,201);
     }
 
     public function update(Request $request,$id)

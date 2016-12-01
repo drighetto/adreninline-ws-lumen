@@ -9,7 +9,8 @@
         "laravel/lumen-framework": "5.3.*",
         "vlucas/phpdotenv": "~2.2",
         "zendframework/zend-config": "^2.6",
-        "zendframework/zend-soap": "^2.6"
+        "zendframework/zend-soap": "^2.6",
+        "palanik/lumen-cors": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

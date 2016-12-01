@@ -26,6 +26,7 @@ $app->group([
     /* Nesse grupo de rotas vamos criar alguns recursos do nosso WEB-SERVICE */
     /*Recurso: '/usuarios' */
     'prefix'=>'api/usuarios',
+    //'middleware' => 'cors',
     //'namespace'=>'App\Http\Controllers'
 ], function() use ($app){
     //Metodo GET do HTTP e vamos passar o Controller que vai executar essa acao
@@ -33,6 +34,7 @@ $app->group([
     $app->get('{id}','UsuariosController@show'); // Vamos trabalhar com elementos
     //$app->get('{email}/{senha}','UsuariosController@login'); // Vamos trabalhar com elementos
     $app->post('', 'UsuariosController@store');
+    //$app->options('', 'UsuariosController@store');
     $app->put('{id}', 'UsuariosController@update');
     $app->delete('{id}', 'UsuariosController@destroy');
 });
@@ -82,7 +84,7 @@ $app->group([
 });
 
 /* Trabalhando com SOAP - http://portal.tcu.gov.br/webservices-tcu/ */
-
+/*
 $app->get('tcu', function(){
     //Criando um Cliente-SOAP para consumir o Web SERVICE
     $client = new \Zend\Soap\Client('http://contas.tcu.gov.br/debito/CalculoDebito?wsdl');
@@ -105,21 +107,23 @@ $app->get('tcu', function(){
         'dataAtualizacao'=>'2016-08-08'
     ]));
 });
+*/
 
 /* Configurando nosso servidor WSDL */
-//$uri = 'http://son-soap.dev:8080'; //Servidor remoto SOAP do Apache
-$uri = 'http://localhost:8080'; //Servidor remoto SOAP do Apache
-$app->get('son-soap.wsdl', function() use($uri){
-    $autoDiscover = new \Zend\Soap\AutoDiscover();
+$uri = 'http://son-soap.dev:8080'; //Servidor remoto SOAP do Apache
+
+//$uri = 'http://localhost:8080'; //Servidor remoto SOAP do Apache
+//$app->get('son-soap.wsdl', function() use($uri){
+    //$autoDiscover = new \Zend\Soap\AutoDiscover();
     /* Definir o endereço do SOAP */
-    $autoDiscover->setUri("$uri/server");
-    $autoDiscover->setServiceName('SONSOAP');
+    //$autoDiscover->setUri("$uri/server");
+    //$autoDiscover->setServiceName('SONSOAP');
     /* A função 'addFunction()' faz com que todas as funções
     passadas para essa função apareção no WSDL */
-    $autoDiscover->addFunction('soma');
+    //$autoDiscover->addFunction('soma');
     /* Gerando o WSDL */
-    $autoDiscover->handle();
-});
+    //$autoDiscover->handle();
+//});
 
 /* Criando um servidor SOAP */
 $app->post('server', function() use($uri){
