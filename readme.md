@@ -4,7 +4,7 @@ Esse é o web service do novo aplicativo da equipe Adreninline.
 
 ## Pré requisitos do ambiente
 
-* [PHP 5.6](https://secure.php.net)
+* [PHP >= 5.6](https://secure.php.net)
 * OpenSSL PHP Extension
 * PDO PHP Extension
 * Mbstring PHP Extension (--enable-mbstring)
@@ -14,7 +14,7 @@ Esse é o web service do novo aplicativo da equipe Adreninline.
 * [npm](https://www.npmjs.com/)
 * [Docker](https://www.docker.com/)
 
-## Docker - Laradock 
+## Docker - Laradock
 
 Esse projeto utiliza para ambiente de desenvolvimento o [Docker](https://www.docker.com/)
 
@@ -66,6 +66,38 @@ E finalmente execute o comando:
   $php -S localhost:8000 -t public public/index.php
 ```
 
+### Rodar o web service no XAMPP
+
+Instale o [XAMPP](https://www.apachefriends.org/pt_br/download.html) no seu computador.
+
+Copie para a pasta "C:\xampp\htdocs" o projeto [adreninline-ws-lumen]()
+
+Após a instalação acesse o diretório "C:\xampp\apache\conf\extra" e edite o arquivo: [httpd-vhosts.conf]()
+
+No final do arquivo acrescente esse trecho abaixo:
+
+```sh
+<VirtualHost adreninline-ws-lumen.dev:80>
+  DocumentRoot "C:\xampp\htdocs\adreninline-ws-lumen"
+  ServerAdmin adreninline-ws-lumen.dev
+  <Directory "C:\xampp\htdocs\adreninline-ws-lumen">
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+  </Directory>
+</VirtualHost>
+```
+
+Acesse o diretório "C:\Windows\System32\drivers\etc" e edite o arquivo: [hosts]()
+
+No arquivo "hosts" acrescente a seguinte linha e em seguida salve:
+
+```sh
+  127.0.0.1 adreninline-ws-lumen.dev
+```
+
+Após isso reinicie o Apache do XAMPP e no seu navegador acesse: http://adreninline-ws-lumen.dev
+
 ### Rodar o web service com o Docker + Laradock
 
 Acesse dentro do diretório "laradock" e execute o comando abaixo:
@@ -100,3 +132,8 @@ Com o nginx do laradock:
 ## Autor
 
 [Danilo Righetto - Web Developer](https://br.linkedin.com/in/danilo-righetto)
+
+[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+
+
+   [Marc Garcia Torrent]: <https://www.codementor.io/magarrent/how-to-install-laravel-5-xampp-windows-du107u9ji>
